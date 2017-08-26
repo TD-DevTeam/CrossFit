@@ -11,7 +11,8 @@ import * as bodyParser from "body-parser";
 import * as mongoose from "mongoose";
 import * as pug from "pug";
 
-import * as router from "./router";
+import { Router } from "./router";
+// path적을 필요 없이 자동 임포트 하도록 기여해도 좋을듯(자바처럼)
 
 dotenv.config({ path: ".env.crossfit" });
 
@@ -47,7 +48,7 @@ app.use(session({
 }));
 
 // set route
-router.route(app);
+Router.Instance.route(app);
 
 // listening on port
 app.listen(app.get("port"), () => {
