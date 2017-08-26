@@ -6,7 +6,7 @@ export default class HomeController implements Controller {
   /**
    * GET /
    */
-  index(req: Request, res: Response): void {
+  public index(req: Request, res: Response): void {
     res.render("home", {
       title: "Crossfit!"
     });
