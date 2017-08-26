@@ -11,10 +11,12 @@ import * as bodyParser from "body-parser";
 import * as mongoose from "mongoose";
 import * as pug from "pug";
 
+import * as homeController from "./controllers/home";
+
 dotenv.config({ path: ".env.crossfit" });
 
-const MongoStore = mongo(session);
-const app = express();
+const MongoStore: mongo.MongoStoreFactory = mongo(session);
+const app: express.Application = express();
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -24,7 +26,7 @@ mongoose.connection.on("error", () => {
 });
 
 app.set("port", process.env.PORT);
-// pug views
+// pug setup
 app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", "pug");
 // parsing body
@@ -40,6 +42,8 @@ app.use(session({
     autoReconnect: true                 // Reconnects to mongodb
   })
 }));
+// app routes
+app.get("/", homeController.index);
 // listening on port
 app.listen(app.get("port"), () => {
   console.log(("  app running at http://localhost:%d in %s mode"), app.get("port"), app.get("env"));
