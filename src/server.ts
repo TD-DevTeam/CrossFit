@@ -9,6 +9,7 @@ import * as session from "express-session";
 import * as mongo from "connect-mongo";
 import * as bodyParser from "body-parser";
 import * as mongoose from "mongoose";
+import * as pug from "pug";
 
 dotenv.config({ path: ".env.crossfit" });
 
@@ -23,6 +24,9 @@ mongoose.connection.on("error", () => {
 });
 
 app.set("port", process.env.PORT);
+// pug views
+app.set("views", path.join(__dirname, "../views"));
+app.set("view engine", "pug");
 // parsing body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
