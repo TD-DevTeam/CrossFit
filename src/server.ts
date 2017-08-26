@@ -12,6 +12,7 @@ import * as mongoose from "mongoose";
 import * as pug from "pug";
 
 import * as homeController from "./controllers/home";
+import * as router from "./router/index";
 
 dotenv.config({ path: ".env.crossfit" });
 
@@ -42,8 +43,10 @@ app.use(session({
     autoReconnect: true                 // Reconnects to mongodb
   })
 }));
-// app routes
-app.get("/", homeController.index);
+
+// set route
+router.route(app, homeController.index);
+
 // listening on port
 app.listen(app.get("port"), () => {
   console.log(("  app running at http://localhost:%d in %s mode"), app.get("port"), app.get("env"));
