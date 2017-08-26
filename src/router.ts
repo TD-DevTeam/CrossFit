@@ -1,7 +1,12 @@
 import { Application } from "express";
-import * as homeController from "./controllers/home";
+import HomeController from "./controllers/home";
 
-export function route(app: Application): void {
-  // app route
-  app.get("/", homeController.index);
+export default class Router {
+  route(app: Application): Application {
+    // app route
+    const homeController = new HomeController();
+
+    app.get("/", homeController.index);
+    return app;
+  }
 }
