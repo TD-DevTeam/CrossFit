@@ -1,12 +1,12 @@
 {
-  "name": "express-typescript-starter",
+  "name": "Crossfit!",
   "version": "0.1.0",
-  "description": "A starting point for Node.js express apps with TypeScript",
+  "description": "Crossfit: Your Exercise Tracker",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sahat/hackathon-starter.git"
+    "url": "https://github.com/TD-DevTeam/CrossFit"
   },
-  "author": "Bowden Kelly",
+  "author": "TD-DevTeam",
   "license": "MIT",
   "scripts": {
     "start": "npm run build && npm run watch",
