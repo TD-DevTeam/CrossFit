@@ -11,8 +11,7 @@ import * as bodyParser from "body-parser";
 import * as mongoose from "mongoose";
 import * as pug from "pug";
 
-import * as homeController from "./controllers/home";
-import * as router from "./router/index";
+import * as router from "./router";
 
 dotenv.config({ path: ".env.crossfit" });
 
@@ -27,12 +26,15 @@ mongoose.connection.on("error", () => {
 });
 
 app.set("port", process.env.PORT);
+
 // pug setup
 app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", "pug");
+
 // parsing body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 // session setup
 app.use(session({
   resave: true,                         // depends on if store has touch method
@@ -45,7 +47,7 @@ app.use(session({
 }));
 
 // set route
-router.route(app, homeController.index);
+router.route(app);
 
 // listening on port
 app.listen(app.get("port"), () => {
