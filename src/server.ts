@@ -33,7 +33,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET,   // signs session ID cookie
   store: new MongoStore({               // store for session
     url: process.env.MONGODB_URI,
-    autoReconnect: true
+    autoReconnect: true                 // Reconnects to mongodb
   })
 }));
 // listening on port
