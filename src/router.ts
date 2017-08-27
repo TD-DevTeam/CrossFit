@@ -1,7 +1,20 @@
 import { Application } from "express";
-import * as homeController from "./controllers/home";
+import HomeController from "./controllers/home";
 
-export function route(app: Application): void {
-  // app route
-  app.get("/", homeController.index);
+export class Router {
+  private static _instance: Router;
+
+  private constructor() {
+
+  }
+
+  public static get Instance(): Router {
+    return this._instance == undefined ? this._instance = new this() : this._instance;
+  }
+
+  route(app: Application): Application {
+    // app route
+    app.get("/", HomeController.Instance.index);
+    return app;
+  }
 }
