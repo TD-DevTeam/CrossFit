@@ -9,10 +9,7 @@ export class Router {
   }
 
   public static get Instance(): Router {
-    if (this._instance == undefined) {
-      this._instance = new this();
-    }
-    return this._instance;
+    return this._instance == undefined ? this._instance = new this() : this._instance;
   }
 
   route(app: Application): Application {
