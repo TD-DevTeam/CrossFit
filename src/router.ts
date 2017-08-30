@@ -16,7 +16,7 @@ export class Router {
     // app route
     const homeController = new HomeController();
 
-    app.get("/", homeController.index);
+    app.get("/", homeController.get);
     return app;
   }
 }

@@ -6,7 +6,7 @@ export default class HomeController extends Controller {
   /**
    * GET /
    */
-  public index(req: Request, res: Response): void {
+  public get(req: Request, res: Response): void {
     res.render("home", {
       title: "Crossfit!"
     });
