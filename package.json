@@ -47,6 +47,8 @@
     "express": "^4.15.4",
     "express-session": "^1.15.5",
     "mongoose": "^4.11.8",
+    "passport": "^0.4.0",
+    "passport-google-oauth": "^1.0.0",
     "pug": "^2.0.0-rc.3"
   },
   "devDependencies": {
@@ -56,6 +58,7 @@
     "@types/express": "^4.0.37",
     "@types/express-session": "^1.15.3",
     "@types/mongoose": "^4.7.21",
+    "@types/passport": "^0.3.4",
     "@types/pug": "^2.0.4",
     "concurrently": "^3.5.0",
     "dotenv": "^4.0.0",
