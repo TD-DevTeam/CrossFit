@@ -1,5 +1,5 @@
 import * as mongoose from "mongoose";
 
 export default interface ModelGenerator {
-  model: mongoose.Model<any>;
+  model: mongoose.Model<mongoose.Document>;
 }
