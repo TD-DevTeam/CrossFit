@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import * as Validator from "express-validator";
+import * as validator from "express-validator";
 import Controller from "./controller";
 import { UserModel } from "../models/user";
 import * as passport from "passport";
@@ -23,17 +23,28 @@ export default class LoginController extends Controller {
   public post(req: Request, res: Response, next: NextFunction): void {
     console.log("login post sent");
     req.check("email", "Email is not valid").isEmail();
-    req.check("password", "Password cannot be blank").isEmpty();
+    req.check("password", "Password cannot be blank").notEmpty();
     req.sanitize("email").normalizeEmail({ gmail_lowercase: true, gmail_remove_dots: false });
 
-    console.log("Request : " + req.body);
+    console.log(req.body);
 
-    const errors = req.validationErrors;
+    const errors = req.validationErrors(false);
 
     if (errors) {
       // TODO : flash lib(Error, Success)
       console.log("Error while post validation");
-      req.flash("errors", "Wrong Input!");
+      let i: number = 0;
+      let msg: string = "";
+      if (errors instanceof Array) {
+        for (; i < errors.length; i++) {
+          msg += (<Array<any>>errors)[i].msg;
+          if (i < errors.length - 1) {
+            msg += ", ";
+          }
+        }
+      }     // TODO : String parsing for non-array (ex Dictionary)
+      console.log("message : " + msg);
+      req.flash("errors", msg);
       return res.redirect("/login");
     }
 
