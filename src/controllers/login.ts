@@ -33,7 +33,7 @@ export default class LoginController extends Controller {
     if (errors) {
       // TODO : flash lib(Error, Success)
       console.log("Error while post validation");
-      req.flash("errors", errors.toString());
+      req.flash("errors", "Wrong Input!");
       return res.redirect("/login");
     }
 

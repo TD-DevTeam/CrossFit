@@ -12,12 +12,12 @@ import * as mongoose from "mongoose";
 import * as pug from "pug";
 import * as passport from "passport";
 import * as validator from "express-validator";
+import * as flash from "express-flash";
 
 import { PassportAuth } from "./auth";
 import { Router } from "./router";
 // path적을 필요 없이 자동 임포트 하도록 기여해도 좋을듯(자바처럼)
 
-const flash = require("connect-flash");
 
 dotenv.config({ path: ".env.crossfit" });
 
