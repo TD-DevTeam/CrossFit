@@ -11,7 +11,6 @@ export default class UserModelGenerator implements ModelGenerator {
 
   constructor() {
     // TODO : Password Hashing with schemas
-    console.log("User Model Init");
 
     this.schema.methods.comparePassword = function (candidatePassword: string,
       cb: (err: Error, isMatch: boolean) => any) {
