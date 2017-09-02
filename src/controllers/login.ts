@@ -24,7 +24,7 @@ export default class LoginController extends Controller {
     console.log("login post sent");
     req.check("email", "Email is not valid").isEmail();
     req.check("password", "Password cannot be blank").isEmpty();
-    req.sanitize("email").normalizeEmail({ gmail_remove_dots: false });
+    req.sanitize("email").normalizeEmail({ gmail_lowercase: true, gmail_remove_dots: false });
 
     console.log("Request : " + req.body);
 
