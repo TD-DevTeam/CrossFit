@@ -1,8 +1,20 @@
 import { Request, Response } from "express";
 import Controller from "./controller";
-// Default classes & interfaces are to be loaded without {}.
 
 export default class HomeController extends Controller {
+  private static _instance: HomeController;
+
+  private constructor() {
+    super();
+  }
+
+  public static get Instance(): HomeController {
+    if (this._instance == undefined) {
+      this._instance = new this();
+    }
+
+    return this._instance;
+  }
   /**
    * GET /
    */
