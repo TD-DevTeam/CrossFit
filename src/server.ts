@@ -18,6 +18,7 @@ import { PassportAuth } from "./passportauth";
 import { Router } from "./router";
 // path적을 필요 없이 자동 임포트 하도록 기여해도 좋을듯(자바처럼)
 
+require("source-map-support").install();
 
 dotenv.config({ path: ".env.crossfit" });
 
