@@ -19,7 +19,8 @@ export class Router {
     const loginController = new LoginController();
 
     app.get("/", homeController.get);
-    app.get("/login/", loginController.get);
+    app.get("/login", loginController.get);
+    app.post("/login", loginController.post);
 
     return app;
   }

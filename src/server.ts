@@ -37,6 +37,10 @@ app.set("port", process.env.PORT);
 app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", "pug");
 
+// utility setup
+app.use(validator());
+app.use(flash());
+
 // parsing body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
