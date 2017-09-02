@@ -5,6 +5,20 @@ import { UserModel } from "../models/user";
 import * as passport from "passport";
 
 export default class LoginController extends Controller {
+  private static _instance: LoginController;
+
+  private constructor() {
+    super();
+  }
+
+  public static get Instance(): LoginController {
+    if (this._instance == undefined) {
+      this._instance = new this();
+    }
+
+    return this._instance;
+  }
+
   /**
    * GET login/
    */

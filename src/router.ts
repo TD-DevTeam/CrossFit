@@ -15,8 +15,8 @@ export class Router {
 
   route(app: Application): Application {
     // app route
-    const homeController = new HomeController();
-    const loginController = new LoginController();
+    const homeController = HomeController.Instance;
+    const loginController = LoginController.Instance;
 
     app.get("/", homeController.get);
     app.get("/login", loginController.get);
