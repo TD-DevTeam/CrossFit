@@ -3,9 +3,9 @@ import * as passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Request, Response, NextFunction } from "express";
 import UserModelGenerator from "./models/user";
-import { UserModel } from "./models/user";
+import { UserDocument } from "./models/user";
 
-const user = new UserModelGenerator().model;
+const userModel: mongoose.Model<UserDocument> = new UserModelGenerator().model;
 
 export class PassportAuth {
   private static _instance: PassportAuth;
@@ -24,13 +24,13 @@ export class PassportAuth {
     });
 
     passport.deserializeUser((id, done) => {
-      user.findById(id, (err, user) => {
+      userModel.findById(id, (err, user) => {
       done(err, user);
       });
     });
 
     passport.use(new LocalStrategy({ usernameField: "email"}, (email, password, done) => {
-        user.findOne({ email: email.toLowerCase() }, (err: Error, user: UserModel) => {
+        userModel.findOne({ email: email.toLowerCase() }, (err: Error, user: UserDocument) => {
           if (err) { return done(err); }
           if (!user) { return done(undefined, false, { message: `${email} not found.`}); }
           user.comparePassword(password, (err: Error, isMatch: boolean) => {

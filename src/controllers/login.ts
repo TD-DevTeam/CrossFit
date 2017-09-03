@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import * as validator from "express-validator";
 import Controller from "./controller";
-import { UserModel } from "../models/user";
+import { UserDocument } from "../models/user";
 import * as passport from "passport";
 
 export default class LoginController extends Controller {
@@ -62,7 +62,7 @@ export default class LoginController extends Controller {
       return res.redirect("/login");
     }
 
-    passport.authenticate("local", (err: Error, user: UserModel, info: any) => {
+    passport.authenticate("local", (err: Error, user: UserDocument, info: any) => {
       if (err) { return next(err); }
       if (!user) {
         console.log("Error while authentication");

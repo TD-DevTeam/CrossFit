@@ -7,7 +7,7 @@ export default class UserModelGenerator implements ModelGenerator {
     password: String
   }, { timestamps: true });
 
-  model: mongoose.Model<mongoose.Document>;
+  model: mongoose.Model<UserDocument>;
 
   constructor() {
     // TODO : Password Hashing with schemas
@@ -21,12 +21,13 @@ export default class UserModelGenerator implements ModelGenerator {
       }
     };
 
+    // Schema is used to create the model, which is Model for UserDocument.
     this.model = mongoose.model("User", this.schema);
   }
 }
 
-
-export type UserModel = mongoose.Document & {
+// UserDocument type for type inference of created Document from model.
+export type UserDocument = mongoose.Document & {
   email: string,
   password: string,
   comparePassword: (candidatePassword: string, cb: (err: Error, isMatch: boolean) => any) => any
