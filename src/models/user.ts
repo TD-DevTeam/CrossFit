@@ -13,7 +13,7 @@ export default class UserModelGenerator implements ModelGenerator {
     // TODO : Password Hashing with schemas
 
     this.schema.methods.comparePassword = function (candidatePassword: string,
-      cb: (err: Error, isMatch: boolean) => any) {
+      cb: (err: Error, isMatch: boolean) => any) { // Too Complex Return Type of cb.
       if (candidatePassword === this.password) {
         cb(undefined, true);
       } else {

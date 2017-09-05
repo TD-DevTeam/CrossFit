@@ -42,7 +42,8 @@ export default class LoginController extends Controller {
 
     console.log(req.body);
 
-    const errors = req.validationErrors(false);
+    const errors: any = req.validationErrors(false);
+    // This uses un-imported type
 
     if (errors) {
       // TODO : flash lib(Error, Success)
