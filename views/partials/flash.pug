@@ -1,0 +1,12 @@
+if messages.errors
+  .alert.alert-danger
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    span= messages.errors
+if messages.info
+  .alert.alert-info
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    span= messages.info
+if messages.success
+  .alert.alert-success
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    span= messages.success

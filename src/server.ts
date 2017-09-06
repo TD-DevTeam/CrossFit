@@ -10,9 +10,15 @@ import * as mongo from "connect-mongo";
 import * as bodyParser from "body-parser";
 import * as mongoose from "mongoose";
 import * as pug from "pug";
+import * as passport from "passport";
+import * as validator from "express-validator";
+import * as flash from "express-flash";
 
+import { PassportAuth } from "./passportauth";
 import { Router } from "./router";
 // path적을 필요 없이 자동 임포트 하도록 기여해도 좋을듯(자바처럼)
+
+require("source-map-support").install();
 
 dotenv.config({ path: ".env.crossfit" });
 
@@ -32,6 +38,10 @@ app.set("port", process.env.PORT);
 app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", "pug");
 
+// utility setup
+app.use(validator());
+app.use(flash());
+
 // parsing body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -46,6 +56,12 @@ app.use(session({
     autoReconnect: true                 // Reconnects to mongodb
   })
 }));
+
+// Passport sesseion setup
+app.use(passport.initialize());
+app.use(passport.session());
+
+PassportAuth.Instance.setup(passport);
 
 // set route
 Router.Instance.route(app);

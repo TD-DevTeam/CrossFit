@@ -1,5 +1,6 @@
+import { Request, Response } from "express";
 export default abstract class Controller {
-  controller: Controller = this;
-  // method for type-checking
-  // TODO : add init or destroy methods
+  Controller: Controller = this;
+
+  abstract get(req: Request, res: Response): void;
 }
