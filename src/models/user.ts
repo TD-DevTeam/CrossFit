@@ -12,8 +12,7 @@ export default class UserModelGenerator implements ModelGenerator {
 
   constructor() {
 
-    // TODO : Signup
-    this.schema.pre("save", function save(next: any) {
+    this.schema.pre("save", function (next: any) {
       const userDocument: UserDocument = this;
       bcrypt.genSalt(12, (err: Error, salt: string) => {
         if (err) { return next(err); }
