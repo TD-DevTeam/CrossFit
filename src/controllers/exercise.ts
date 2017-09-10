@@ -73,7 +73,7 @@ export default class ExerciseController extends Controller {
         req.flash("errors", "Exercise already exists." );
         return res.redirect("/exercise");
       }
-      exerciseDocument.save((err) => {
+      exerciseDocument.save((err: Error) => {
         if (err) { return next(err); }
         req.flash("success", "Exercise is saved successfully.");
         return res.redirect("/exercise");
