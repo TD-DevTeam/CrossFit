@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import * as validator from "express-validator";
+import * as mongoose from "mongoose";
+
 import Controller from "./controller";
 import { ExerciseDocument } from "../models/exercise";
 import ExerciseModelGenerator from "../models/exercise";
@@ -59,18 +61,19 @@ export default class ExerciseController extends Controller {
       return res.redirect("/exercise");
     }
 
-    const Exercise = ExerciseModelGenerator.Instance.model;
-    const exercise = new Exercise({
+    const ExerciseModel: mongoose.Model<ExerciseDocument> = ExerciseModelGenerator.Instance.model;
+    const exerciseDocument: ExerciseDocument = new ExerciseModel({
       name: req.body.name
     });
 
-    Exercise.findOne({ name: req.body.name }, (err, existingExercise) => {
+    ExerciseModel.findOne({ name: req.body.name },
+                          (err: Error, existingExercise: ExerciseDocument) => {
       if (err) { return next(err); }
       if (existingExercise) {
         req.flash("errors", "Exercise already exists." );
         return res.redirect("/exercise");
       }
-      exercise.save((err) => {
+      exerciseDocument.save((err) => {
         if (err) { return next(err); }
         req.flash("success", "Exercise is saved successfully.");
         return res.redirect("/exercise");

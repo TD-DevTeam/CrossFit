@@ -1,7 +1,3 @@
-/**
- * Exercise schema
- */
-
 import * as mongoose from "mongoose";
 import ModelGenerator from "./model";
 
