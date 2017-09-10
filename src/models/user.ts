@@ -11,7 +11,19 @@ export default class UserModelGenerator implements ModelGenerator {
   model: mongoose.Model<UserDocument>;
 
   constructor() {
-    // TODO : Password Hashing with schemas
+
+    // TODO : Signup
+    this.schema.pre("save", function save(next: any) {
+      const userDocument: UserDocument = this;
+      bcrypt.genSalt(12, (err: Error, salt: string) => {
+        if (err) { return next(err); }
+        bcrypt.hash(userDocument.password, salt, (err: Error, hash: string) => {
+          if (err) { return next(err); }
+          userDocument.password = hash;     // hashed version of password is stored in DB
+          next();
+        });
+      });
+    });
 
     this.schema.methods.comparePassword = function (candidatePassword: string,
       cb: (err: Error, isMatch: boolean) => any) { // Too Complex Return Type of cb.
