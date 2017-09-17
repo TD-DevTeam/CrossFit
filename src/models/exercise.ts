@@ -20,7 +20,7 @@ export default class ExerciseModelGenerator implements ModelGenerator {
 
   model: mongoose.Model<ExerciseDocument>;
 
-  constructor() {
+  private constructor() {
     this.model = mongoose.model("Exercise", this.schema);
   }
 }

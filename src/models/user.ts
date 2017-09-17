@@ -3,6 +3,16 @@ import * as bcrypt from "bcrypt-nodejs";
 import ModelGenerator from "./model";
 
 export default class UserModelGenerator implements ModelGenerator {
+  private static _instance: UserModelGenerator;
+
+  public static get Instance(): UserModelGenerator {
+    if (this._instance == undefined) {
+      this._instance = new this();
+    }
+
+    return this._instance;
+  }
+
   readonly schema = new mongoose.Schema({
     email: { type: String, unique: true },
     password: String
@@ -10,7 +20,7 @@ export default class UserModelGenerator implements ModelGenerator {
 
   model: mongoose.Model<UserDocument>;
 
-  constructor() {
+  private constructor() {
 
     this.schema.pre("save", function (next: any) {
       const userDocument: UserDocument = this;
