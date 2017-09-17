@@ -26,7 +26,7 @@ export default class UserModelGenerator implements ModelGenerator {
       const userDocument: UserDocument = this;
       bcrypt.genSalt(12, (err: Error, salt: string) => {
         if (err) { return next(err); }
-        bcrypt.hash(userDocument.password, salt, (err: Error, hash: string) => {
+        bcrypt.hash(userDocument.password, salt, undefined, (err: Error, hash: string) => {
           if (err) { return next(err); }
           userDocument.password = hash;     // hashed version of password is stored in DB
           next();
