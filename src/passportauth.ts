@@ -5,7 +5,7 @@ import { Request, Response, NextFunction } from "express";
 import UserModelGenerator from "./models/user";
 import { UserDocument } from "./models/user";
 
-const userModel: mongoose.Model<UserDocument> = new UserModelGenerator().model;
+const userModel: mongoose.Model<UserDocument> = UserModelGenerator.Instance.model;
 
 export class PassportAuth {
   private static _instance: PassportAuth;
